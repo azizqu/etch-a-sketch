@@ -1,30 +1,89 @@
 console.log("Hello")
 
 const container = document.querySelector('#container');
+ 
+const body = document.querySelector('#bod')
 
-const childDiv = document.createElement('div');
-childDiv.classList.add('childDiv');
-childDiv.textContent = "Above is the Grid";
+
+const btnClear = document.createElement('button')
+btnClear.setAttribute('id', 'reset');
+btnClear.textContent = "RESET"
+
+const newGridbtn = document.createElement('button')
+newGridbtn.setAttribute('id','newGrid');
+newGridbtn.textContent = "Enter New Grid params"
+
+
+
+body.insertBefore(btnClear, container);
+body.insertBefore(newGridbtn, container);
+
 
 //make function createGrid(row, col) that loops to create a grid of divs
 
-function createGrid(row, col){ //ex: createGrid(16, 16) 16x16 or 4x4
-    container.style.setProperty('--grid-rows', row);
-    container.style.setProperty('--grid-cols', col);
-    for(i=0; i < (row * col);i++){
-        let divs = document.createElement("div");
-        divs.innerText = (i + 1);
-        container.appendChild(divs).className ="grid-item" 
+function createGrid(){ //ex: createGrid(16, 16) 16x16 or 4x4
+    
+    const prevGridI= document.getElementsByClassName("grid-item")
+    const arrayGrid = Array.from(prevGridI);
+    console.log(arrayGrid)
+    console.log(arrayGrid.length)
+    
+    if(arrayGrid.length > 0){ //clears previous div 
+        for(i=0; i<arrayGrid.length; i++){
+            container.removeChild(arrayGrid[i]);
     }
 
+    }
+    
+    const row = prompt("Enter new row value: ")
+    const col = prompt("Enter new col value: ")
+    container.style.setProperty('--grid-rows', row);        
+    container.style.setProperty('--grid-cols', col);
+        for(i=0; i < (row * col);i++){
+            let divs = document.createElement("div");
+            divs.innerText = (i + 1);
+            container.appendChild(divs).className ="grid-item" 
+    }
+    
+}   
+createGrid();
+
+//New grid button 
+
+const listenerBtn = document.getElementById('newGrid').addEventListener("click", function(){
+    const prevGridI= document.getElementsByClassName("grid-item")
+    const arrayGrid = Array.from(prevGridI);
+    console.log(arrayGrid)
+    createGrid();
+
+    let divHover = document.getElementsByClassName("grid-item")
+
+for(i=0; i<divHover.length; i++) {
+    divHover[i].addEventListener('mouseover', function(e){
+        e.target.style.backgroundColor ='red';
+        setTimeout(function(){
+            document.getElementById("reset").addEventListener("click", function(){
+                e.target.style.backgroundColor= "grey";
+            })
+        }, 500)
+    }, false)
 }
-createGrid(16,16);
+   
+})
+
+let divHover = document.getElementsByClassName("grid-item")
+
+for(i=0; i<divHover.length; i++) {
+    divHover[i].addEventListener('mouseover', function(e){
+        e.target.style.backgroundColor ='red';
+        setTimeout(function(){
+            document.getElementById("reset").addEventListener("click", function(){
+                e.target.style.backgroundColor= "grey";
+            })
+        }, 500)
+    }, false)
+}
 
 
-//container.appendChild(childDiv);
 
-//Div container (parent DIV) 
-// let container = document.createElement('div');
-// container.setAttribute('id', 'container');
-// document.body.appendChild(container);
 
