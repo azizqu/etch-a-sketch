@@ -1,6 +1,9 @@
 /* .childDiv{
     border: 5px solid;
 } */
+#bod{
+    display: grid;
+}
 :root{
     --grid-cols: 1;
     --grid-rows: 1;
@@ -8,21 +11,42 @@
 
 #container{
     display: grid;
-    grid-template-columns: repeat(var(--grid-cols), 50px);
-    grid-template-rows: repeat(var(--grid-rows), 50px);
-    grid-gap:1px;
+    grid-template-columns: repeat(var(--grid-cols), 60px);
+    grid-template-rows: repeat(var(--grid-rows), 60px);
+    /* grid-gap:1px; */
     position:relative;
-    left:150px;
+    /* left:150px; */
     top: 50px;
     padding-bottom: 5em;
     font-size: 75%;
+    justify-content: center;
 }
 
 .grid-item{
-    margin: 0;
-    padding: 1em;
-    border: 1px solid rgb(117, 113, 113);
+    /* margin: 0; */
+    /* padding: 3em; */
+    /* border: 1px solid rgb(117, 113, 113); */
     text-align: center;
     background-color: grey;
     transition:0.5s;
+    height: 100%;
+    width: 100%;   
+}
+
+#reset, #newGrid{
+    width: auto;
+    height: auto;
+    place-self: center;
+    margin-bottom: 1em;
+}
+
+#gridInfo{
+    text-align: center;
+}
+
+#footer{
+    position: bottom;
+    text-align: center;
+    padding-top: 15%;
+
 }
